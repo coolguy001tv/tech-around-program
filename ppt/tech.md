@@ -200,8 +200,8 @@ I get 10 times more traffic from [Google][1] than from
 ----
 
 * 版本号替换
-* 字符串拼接
 * 文本替换
+* 字符串拼接
 * 其他
 
 [slide]
@@ -213,7 +213,7 @@ I get 10 times more traffic from [Google][1] than from
 <link rel="stylesheet" href="demo/css/demo.css?v=1">
 <link rel="stylesheet" href="demo/css/demo.css?w=1">
 <link rel="stylesheet" href="demo/css/demo.css?x=1" >
-<link rel="stylesheet" href="demo/css/demo.css?y=1"   />
+<link rel="stylesheet" href="demo/css/demo.css?yx=10" />
 ```
 [note]
 不考虑`<link rel="stylesheet" href='demo/css/demo.css'>`
@@ -236,14 +236,27 @@ I get 10 times more traffic from [Google][1] than from
 ```
 <script>
     var height = $(window).css("height");
+    $(window).css("height","320px");
 </script>
 ```
 变成了
 ```
 <script>
     var height = $(window).css?v=2");
+    $(window).css?v=2"height","320px");
 </script>
 ```
+[slide]
+#解决思路（续）
+----
+* `\.css(\?\w+=\d+)?  -> .css?v=2`
+
+[note]
+方案不是完美的，需要自行考虑:如果是
+* a.css?=1
+* a.css?1
+* a.css?v=1 (后面跟空格)
+[/note]
 
 [slide]
 # 版本号替换(2)
@@ -254,4 +267,57 @@ I get 10 times more traffic from [Google][1] than from
 <script src="demo/js/demo.js?v=1"></script>
 <script src='demo/js/demo.js'></script>
 ```
+[slide]
+#解决思路
+----
+* 其中的一个思路：
+    * `\.js.*"  -> .js?v=2"`
+
+等等 {:&.fadeIn}
+
+出问题了 {:&.fadeIn}
+
+[note]
+我们仍然不考虑单引号的问题
+[/note]
+[slide]
+#什么问题
+----
+```
+<script>
+    $(".js_confirm").click();
+</script>
+```
+变成了
+```
+<script>
+    $(".js?v=2").click();
+</script>
+```
+
+[slide]
+# 文本替换
+----
+
+
+[slide]
+# 字符串拼接
+## html转化成JS中拼接的字符串
+----
+```
+<form id="home-search-form" action="/zh-CN/search" method="get" class="search nodisable">
+    <div class="home-search-form search-form">
+        <label for="home-q" class="offscreen">搜索</label>
+        <span class="search-icon">
+            <i class="icon-search" aria-hidden="true"></i>
+        </span>
+        <input class="search-input" type="search" id="home-q" name="q" placeholder="搜索文档">
+        <button type="submit" class="offscreen">搜索</button>
+    </div>
+</form>
+```
+
+[slide]
+
+
 
