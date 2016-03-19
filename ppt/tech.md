@@ -298,6 +298,78 @@ I get 10 times more traffic from [Google][1] than from
 [slide]
 # 文本替换
 ----
+将代码
+```
+#purview("200012")
+#author("2007")
+<li id="menu-distribution-order"><a class="menu-link" href="//xxxx"><span
+        class=" menu-item clearfix"><i class="left icon-menu-right"></i><span
+        class="left">分销订单</span></span></a></li>
+#end
+#end
+```
+转化成
+```
+<a id="menu-deal-orderStatics" href="//xxxx">订单统计</a>
+```
+
+[slide]
+# 解决思路
+----
+* `<li id="(.*)"` ....
+
+等等 {:&.fadeIn}
+
+出问题了 {:&.fadeIn}
+
+[slide]
+# ** 贪婪模式 ** 和 ** 非贪婪模式 **
+-----
+
+*   贪婪模式： 尽可能多
+* 非贪婪模式：尽可能少
+    * 问号(?)符紧跟在任何一个其他限制符（*,+,?，{n}，{n,}，{n,m}）后面时，匹配模式是非贪婪的
+    * 例如，对于字符串“oooo”，“o+?”将匹配单个“o”，而“o+”将匹配所有“o”
+[slide]
+# $n 与括号
+## 第n个匹配项
+----
+
+* $n表示第n个括号匹配的项
+* 实际测试中$0是表示整个字符串
+* (?:pattern)是一个非获取匹配
+    * 对于字符串`<li id="menu-distribution-order">`  
+    * 正则表达式`<li id="(.*?)"`中$1是`menu-distribution-order`
+    * 正则表达式`<li id="(?:.*?)"`中$1是空串
+
+然后继续我们的思路
+
+[slide]
+# 解决思路（续）
+----
+* `<li id="(.*?)".*?href="(.*?)".*\n.*\n.*?>(.*?)</.*` ->
+* `<a id="$1" href="$2">$3</a>`
+
+
+等等 {:&.fadeIn}
+
+出问题了 {:&.fadeIn}
+
+
+[slide]
+#什么问题
+----
+```
+<!--<li id="menu-distribution-order"><a class="menu-link" href="//xxxx"><span
+        class=" menu-item clearfix"><i class="left icon-menu-right"></i><span
+        class="left">分销订单</span></span></a></li>-->
+```
+会被替换成：
+```
+<!--<a id="menu-distribution-order" href="//xxxx">分销订单</a>
+```
+导致不应该被注释掉的代码被注释掉（没有结束注释符号）  
+解决方案请自行考虑
 
 
 [slide]
@@ -305,18 +377,19 @@ I get 10 times more traffic from [Google][1] than from
 ## html转化成JS中拼接的字符串
 ----
 ```
-<form id="home-search-form" action="/zh-CN/search" method="get" class="search nodisable">
+<form id="home-search-form" action="/zh-CN/search" method="get">
     <div class="home-search-form search-form">
-        <label for="home-q" class="offscreen">搜索</label>
-        <span class="search-icon">
-            <i class="icon-search" aria-hidden="true"></i>
-        </span>
-        <input class="search-input" type="search" id="home-q" name="q" placeholder="搜索文档">
+        <input class="search-input" type="search" id="home-q">
         <button type="submit" class="offscreen">搜索</button>
     </div>
 </form>
 ```
-
+转化成JS中的字符串拼接，类似于
+```
+'<form id="home-search-form" action="/zh-CN/search" method="get">' + 
+'<div class="home-search-form search-form">' +
+....
+````
 [slide]
 
 
