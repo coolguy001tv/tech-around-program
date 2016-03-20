@@ -11,10 +11,11 @@ date: 2016/03/16
 
 * MarkDown {:&.rollIn}
 * 正则实例
-* windows命令行
+* 最常用的几个win批处理命令
+[slide data-transition="vertical3d"]
+# MarkDown
 
-[slide]
-
+[slide data-transition="glue"]
 # MarkDown
 ## 目标： ** 易读易写 **
 -----
@@ -32,25 +33,27 @@ Markdown 语法受到一些既有 text-to-HTML 格式的影响，
 
 而最大灵感来源其实是纯文本电子邮件的格式。
 
+\*.md文件
+
 [/note]
-[slide]
+
+[slide data-transitioin="move"]
 # 基本语法
 ----
 
-* 段落、标题
-    * Setext: 底线的形式利用=（1阶）和 -（2阶）
+* 段落、标题 
+    * Setext: 底线的形式利用=（1阶）和 -（2阶） {:&.zoomIn}
     * Atx: 行首插入 1 到 6 个 \# ，对应到标题 1 到 6 阶
-    
-eg: 
+    * eg: 
 
-<pre class="pre">
-    A First Level Header
-    ====================
-    A Second Level Header
-    ---------------------
-    # A 1st Level Header
-    ## A 2nd Level Header
-</pre>
+    * <pre class="pre">
+        A First Level Header
+        ====================
+        A Second Level Header
+        ---------------------
+        # A 1st Level Header
+        ## A 2nd Level Header
+     </pre>
 [slide]  
 # **段落、标题**展示效果
 ----
@@ -66,31 +69,28 @@ A Second Level Header
 # 基本语法(续)
 ----
 * 强调
-    * 星号（1个或者2个）
+    * 星号（1个或者2个） {:&.moveIn}
     * 底线（1个或者2个）
-<pre class="pre">
-Some of these words _are emphasized_
-Use two asterisks for __strong emphasis__
-</pre>
-
-Some of these words _are emphasized_
-
-Use two asterisks for __strong emphasis__
+    * <pre class="pre">
+        Some of these words _are emphasized_
+        Use two asterisks for __strong emphasis__
+      </pre>
+    * Some of these words _are emphasized_ 
+    * Use two asterisks for __strong emphasis__
 
 [slide]
 # 基本语法(续)
 ----
 * 列表
-    * 星号
+    * 星号 {:&.moveIn}
     * 加号
     * 减号
     * 数字接着一个英文句点
- 
-<pre class="pre">
-+ Candy
-+ Gum
-+ Booze
-</pre>
+    * <pre class="pre">
+        + Candy
+        + Gum
+        + Booze
+      </pre>
 [note]
 请不要混合使用符号，以免出现不一样的解析结果
 
@@ -101,19 +101,19 @@ Use two asterisks for __strong emphasis__
 [slide]
 # 基本语法(续)
 ----
-* 链接
-    * 行内链接
+* 链接 {:&.moveIn}
+    * 行内链接 {:&.moveIn}
         * 接在后面用括号直接接上链接
     * 参考链接
-        * 链接定一个名称，之后你可以在文件的其他地方定义该链接的内容
-        
+        * 链接定一个名称，之后你可以在文件的其他地方定义该链接的内容  
+
+[slide]
+# **链接**实例
+----
 <pre class="pre">
-    This is an [example link](http://example.com/ "With a Title").
-    
-    
+    This is an [example link](http://example.com/ "With a Title"). 
     I get 10 times more traffic from [Google][1] than from
     [Yahoo][2] or [MSN][3].
-    
     [1]: http://google.com/ "Google"
     [2]: http://search.yahoo.com/ "Yahoo Search"
     [3]: http://search.msn.com/ "MSN Search"
@@ -133,13 +133,14 @@ I get 10 times more traffic from [Google][1] than from
 [note]
 下一页先讲换行
 [/note]
+
 [slide]
 #  基本语法(续)
 ----
-* 换行
+* 换行 {:&.moveIn}
     * 行尾插入至少两个空格，或直接一行空行
 * 图片
-    * 行内形式 
+    * 行内形式 {:&.moveIn}
 <pre class="pre">![alt text](/path/to/img.jpg "Title")</pre>
     * 参考形式
 
@@ -147,8 +148,8 @@ I get 10 times more traffic from [Google][1] than from
 [slide]
 #  基本语法(续)
 ----
-* 代码
-    * 反引号(`)
+* 代码 {:&.moveIn}
+    * 反引号(`) {:&.moveIn}
     * 制表符或至少四个空格缩进的行
 * 引用
     * 段落开头加上右尖括号('>')
@@ -203,7 +204,9 @@ I get 10 times more traffic from [Google][1] than from
 * 文本替换
 * 字符串拼接
 * 其他
-
+[note]
+测试均在web-storm上进行
+[/note]
 [slide]
 # 版本号替换(1)
 ## 将所有引入css的地方加入一个版本号：?v=2
@@ -390,7 +393,121 @@ I get 10 times more traffic from [Google][1] than from
 '<div class="home-search-form search-form">' +
 ....
 ````
+
 [slide]
+# 解决思路
+## 头部替换为\'，尾部替换为\'\+
+----
+* 方案一
+    1. `^ -> '`
+    2. `$ -> '+`
+    3. 删除最后一个加号
+* 方案二：
+    1. `^(.*)$ -> '$1'+ `
+    2. 删除最后一个加号
+    
+思考：反过来怎么写? 
+
+`'(.*)'\+`
+
+[slide]
+# 正则-其他
+## 简单聊聊身份证的验证
+----
+* 15位身份证的年用2位，没有校验位
+* 18位身份证最后一位是校验位
+    * 1-2 省级行政区代码
+    * 3-4 地级行政区划分代码
+    * 5-6 县区行政区分代码
+    * 7-10 11-12 13-14 出生年、月、日
+    * 15-17 顺序码，同一地区同年、同月、同日出生人的编号，奇数是男性，偶数是女性
+    * 18 校验码，如果是0-9则用0-9表示，如果是10则用X（罗马数字10）表示
+        * [ISO 7064:1983,MOD 11-2校验码系统](https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%8D%8E%E4%BA%BA%E6%B0%91%E5%85%B1%E5%92%8C%E5%9B%BD%E5%85%AC%E6%B0%91%E8%BA%AB%E4%BB%BD%E5%8F%B7%E7%A0%81)
+    
+[slide]
+# 18位身份证的正则
+-----
+
+*  `\d{17}[\dxX]`
+* `\d{6}\d{4}[01]\d[0123]\d\d{3}[\dxX]`
+* `\d{6}(18|19|20)\d{2}(0\d|1[012])([012]\d|3[01])\d{3}[\dxX]`
+* `\d{6}(?:18|19|20)\d{2}(?:0\d|1[012])(?:[012]\d|3[01])\d{3}[\dxX]`
+* ....
+
+[slide]
+# 正则-非技术总结
+----
+* 胆大心细
+* 多和同事交流
+* 正则不是万能的
+* ....
+
+[slide]
+# 最常用的几个win批处理命令
+## 目标：可以正常读脚本文件
+----
+* %var_name%
+* echo
+    * echo %path%
+* set
+* rem
+* @
+* call
+* :label与goto
+* pause
+* %errorlevel%
+    
+[note]
+windows不区分大小写  
+* @与echo off功能相似，但它是加在其他命令行的最前面，表示运行时不显示命令行本身。
+* errorlevel == 0 表示成功
+
+[/note]
+
+[slide]
+#一个批处理实例
+----
+```
+set DIRNAME=%~dp0
+if "%DIRNAME%" == "" set DIRNAME=.
+set APP_HOME=%DIRNAME%
+
+@rem Find java.exe
+if defined JAVA_HOME goto findJavaFromJavaHome
+
+set JAVA_EXE=java.exe
+%JAVA_EXE% -version >NUL 2>&1
+if "%ERRORLEVEL%" == "0" goto init
+
+echo.
+echo ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
+goto fail
+
+:findJavaFromJavaHome
+set JAVA_HOME=%JAVA_HOME:"=%
+set JAVA_EXE=%JAVA_HOME%/bin/java.exe
+if exist "%JAVA_EXE%" goto init
+echo ERROR: JAVA_HOME is set to an invalid directory: %JAVA_HOME%
+goto fail
+
+:init
+rem 执行一堆东西，如果出错goto fail
+
+:fail
+rem Set variable GRADLE_EXIT_CONSOLE if you need the _script_ return code instead of
+rem the _cmd.exe /c_ return code!
+if  not "" == "%GRADLE_EXIT_CONSOLE%" exit 1
+exit /b 1
+
+:omega
+```
+[note]注意：这个例子本身是不完整的[/note]
+
+
+
+
+
+
 
 
 
