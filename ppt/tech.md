@@ -12,6 +12,13 @@ date: 2016/03/16
 * MarkDown {:&.rollIn}
 * 正则实例
 * 最常用的几个win批处理命令
+
+[note]
+* MarkDown 
+* 正则实例
+* 最常用的几个win批处理命令
+[/note]
+
 [slide data-transition="vertical3d"]
 # MarkDown
 
@@ -23,9 +30,7 @@ Markdown 是一种轻量级标记语言，创始人为约翰·格鲁伯（John G
 
 <small style="font-size:small">摘自 https://zh.wikipedia.org/wiki/Markdown</small>
 [note]
-一份使用 Markdown 格式撰写的文件应该可以直接以纯文本发布
-
-兼容 HTML
+一份使用 Markdown 格式撰写的文件应该可以直接以纯文本发布 并且 兼容 HTML
 
 Markdown 语法受到一些既有 text-to-HTML 格式的影响，
 
@@ -163,9 +168,9 @@ I get 10 times more traffic from [Google][1] than from
 ---
 类型 | 表述方式 | HTML
 :---|:---|:---
-段落、标题|Setext/Atx|h1~h6
-强调|\*/\_|em/strong
-列表|\*/\+/\-/数字与句点|ul(ol)/li
+段落、标题|Setext/Atx|`<h1>~<h6>`
+强调|\*/\_|`<em>/<strong>`
+列表|\*/\+/\-/数字与句点|`<ul(ol)>/<li>`
 链接|\[\]\(\)|`<a>`
 换行|2个空格或者一个空行|`<br>`
 图片|\!\[\]\(\)|`<img>`
@@ -248,6 +253,8 @@ React Native enables you to build world-class ...
 ```
 [note]
 不考虑`<link rel="stylesheet" href='demo/css/demo.css'>`
+
+两个正则表达式的区别？
 [/note]
 [slide]
 #解决思路
@@ -280,7 +287,7 @@ React Native enables you to build world-class ...
 [slide]
 #解决思路（续）
 ----
-* `\.css(\?\w+=\d+)?  -> .css?v=2`
+* `\.css(\?\w+=\d+)?"  -> .css?v=2"`
 
 [note]
 方案不是完美的，需要自行考虑:如果是
@@ -302,7 +309,7 @@ React Native enables you to build world-class ...
 #解决思路
 ----
 * 其中的一个思路：
-    * `\.js.*"  -> .js?v=2"`
+    * `\.js[^"]*"  -> .js?v=2"`
 
 等等 {:&.fadeIn}
 
@@ -332,17 +339,15 @@ React Native enables you to build world-class ...
 ----
 将代码
 ```
-#purview("200012")
-#author("2007")
 <li id="menu-distribution-order"><a class="menu-link" href="//xxxx"><span
         class=" menu-item clearfix"><i class="left icon-menu-right"></i><span
         class="left">分销订单</span></span></a></li>
-#end
-#end
 ```
+
 转化成
+
 ```
-<a id="menu-deal-orderStatics" href="//xxxx">订单统计</a>
+<a id="menu-distribution-order" href="//xxxx">分销订单</a>
 ```
 
 [slide]
@@ -362,6 +367,16 @@ React Native enables you to build world-class ...
 * 非贪婪模式：尽可能少
     * 问号(?)符紧跟在任何一个其他限制符（*,+,?，{n}，{n,}，{n,m}）后面时，匹配模式是非贪婪的 {:&.moveIn}
     * 例如，对于字符串“oooo”，“o+?”将匹配单个“o”，而“o+”将匹配所有“o”
+
+思考一下 {:&.fadeIn}
++ `\.css[^"]*"` 与 `\.css.*"`在匹配下面两个表达式的不同  {:&.moveIn}
++ `<link rel="stylesheet" href="demo/css/demo.css" >`
++ `<link rel="stylesheet" href="demo/css/demo.css" type="text/css">`
+[note]
+思考一下我们一开始的正则表达式  
+* `\.css[^"]*"`
+* `\.css.*"`
+[/note]
 [slide]
 # $n与括号
 ## 第n个匹配项
@@ -374,12 +389,18 @@ React Native enables you to build world-class ...
     * 正则表达式`<li id="(.*?)"`中$1是`menu-distribution-order`
     * 正则表达式`<li id="(?:.*?)"`中$1是空串
 
-然后继续我们的思路
+然后继续我们的思路 {:&.fadeIn}
 
 [slide]
 # 解决思路（续）
 ----
-* `<li id="(.*?)".*?href="(.*?)".*\n.*\n.*?>(.*?)</.*` ->
+```
+<li id="menu-distribution-order"><a class="menu-link" href="//xxxx"><span
+        class=" menu-item clearfix"><i class="left icon-menu-right"></i><span
+        class="left">分销订单</span></span></a></li>
+```
+
+* `<li id="(.*?)".*?href="(.*?)".*\n.*\n.*?>(.*?)</.*` ->  {:&.fadeIn}
 * `<a id="$1" href="$2">$3</a>`
 
 
@@ -387,7 +408,9 @@ React Native enables you to build world-class ...
 
 出问题了 {:&.fadeIn}
 
-
+[note]
+思考一下如果用的是`<li id="(.*)"`会出现什么？
+[/note]
 [slide]
 # 问题
 ----
@@ -429,18 +452,24 @@ React Native enables you to build world-class ...
 # 解决思路
 ## 头部替换为\'，尾部替换为\'\+
 ----
-* 方案一
-    1. `^ -> '`
+* 方案一 {:&.fadeIn}
+    1. `^ -> '` 
     2. `$ -> '+`
     3. 删除最后一个加号
+    
 * 方案二：
     1. `^(.*)$ -> '$1'+ `
     2. 删除最后一个加号
     
-思考：反过来怎么写? 
+思考：反过来怎么写?   {:&.fadeIn}
 
-`'(.*)'\+`
+`'(.*)'+` -> `$1` {:&.fadeIn}
 
+等等 {:&.fadeIn}
+
+出问题了 {:&.fadeIn}
+
+[note]注意加号前面有\\，即`'(.*)'\+`[/note]
 [slide]
 # 正则-其他
 ## 简单聊聊身份证的验证
@@ -459,16 +488,22 @@ React Native enables you to build world-class ...
 # 18位身份证的正则
 -----
 
+*  `\d{17}[\dxX]`  {:&.moveIn}
+* `\d{6}\d{4}[01]\d[0123]\d\d{3}[\dxX]`
+* `\d{6}(18|19|20)\d{2}(0\d|1[012])([012]\d|3[01])\d{3}[\dxX]`
+* `\d{6}(?:18|19|20)\d{2}(?:0\d|1[012])(?:[012]\d|3[01])\d{3}[\dxX]`
+* ....
+[note]
 *  `\d{17}[\dxX]`
 * `\d{6}\d{4}[01]\d[0123]\d\d{3}[\dxX]`
 * `\d{6}(18|19|20)\d{2}(0\d|1[012])([012]\d|3[01])\d{3}[\dxX]`
 * `\d{6}(?:18|19|20)\d{2}(?:0\d|1[012])(?:[012]\d|3[01])\d{3}[\dxX]`
 * ....
-
+[/note]
 [slide]
 # 正则-非技术总结
 ----
-* 胆大心细
+* 胆大心细 {:&.moveIn}
 * 多和同事交流
 * 正则不是万能的
 * ....
@@ -533,6 +568,9 @@ exit /b 1
 :omega
 ```
 [note]注意：这个例子本身是不完整的[/note]
+
+[slide]
+# End
 
 
 
