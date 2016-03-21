@@ -160,8 +160,6 @@ I get 10 times more traffic from [Google][1] than from
 [/note]
 [slide]
 # 总结
-----
-
 ---
 类型 | 表述方式 | HTML
 :---|:---|:---
@@ -174,7 +172,42 @@ I get 10 times more traffic from [Google][1] than from
 代码|\`/制表符|`<code>`
 引用|\>|`<blockquote><p>`
 
+[slide]
+一个典型例子
+-------
+```
+# React Native 
+[![Build Status](https://travis-ci.org/facebook/react-native.svg?branch=master)](https://travis-ci.org/facebook/react-native) [![Circle CI](https://circleci.com/gh/facebook/react-native.svg?style=svg)](https://circleci.com/gh/facebook/react-native) [![npm version](https://badge.fury.io/js/react-native.svg)](http://badge.fury.io/js/react-native)
 
+React Native enables you to build world-class ...
+
+- [Getting Started](#getting-started)
+- [Getting Help](#getting-help)
+
+## Documentation
+- There are **Guides** that discuss topics like [debugging](https://facebook.github.io/react-native/docs/debugging.html), [integrating with existing apps](https://facebook.github.io/react-native/docs/embedded-app-ios.html), and [the gesture responder system](https://facebook.github.io/react-native/docs/gesture-responder-system.html).
+- Finally, React Native provides a small number of **Polyfills** that offer web-like APIs.
+```
+
+[note]
+* \`\`\`的使用
+* 表格的使用
+[/note]
+
+[slide]
+实际效果
+----
+# React Native 
+[![Build Status](https://travis-ci.org/facebook/react-native.svg?branch=master)](https://travis-ci.org/facebook/react-native) [![Circle CI](https://circleci.com/gh/facebook/react-native.svg?style=svg)](https://circleci.com/gh/facebook/react-native) [![npm version](https://badge.fury.io/js/react-native.svg)](http://badge.fury.io/js/react-native)
+
+React Native enables you to build world-class ...
+
+- [Getting Started](#getting-started)
+- [Getting Help](#getting-help)
+
+## Documentation
+- There are **Guides** that discuss topics like [debugging](https://facebook.github.io/react-native/docs/debugging.html), [integrating with existing apps](https://facebook.github.io/react-native/docs/embedded-app-ios.html), and [the gesture responder system](https://facebook.github.io/react-native/docs/gesture-responder-system.html).
+- Finally, React Native provides a small number of **Polyfills** that offer web-like APIs.
 
 [slide]
 # 参考链接
@@ -189,18 +222,13 @@ I get 10 times more traffic from [Google][1] than from
 [GitHub上README写法暨markdown语法解读](http://www.tuicool.com/articles/zIJrEjn)
 
 [麻花在线markdown编辑器](http://mahua.jser.me/)
-[note]
-* \`\`\`的使用
-* 表格的使用
-
-[/note]
 
 
 [slide]
 # 正则实例
 ----
 
-* 版本号替换
+* 版本号替换 {:&.moveIn}
 * 文本替换
 * 字符串拼接
 * 其他
@@ -233,7 +261,7 @@ I get 10 times more traffic from [Google][1] than from
 出问题了 {:&.fadeIn}
 
 [slide]
-#什么问题
+# 问题
 ----
 
 ```
@@ -283,8 +311,9 @@ I get 10 times more traffic from [Google][1] than from
 [note]
 我们仍然不考虑单引号的问题
 [/note]
+
 [slide]
-#什么问题
+# 问题
 ----
 ```
 <script>
@@ -329,19 +358,19 @@ I get 10 times more traffic from [Google][1] than from
 # ** 贪婪模式 ** 和 ** 非贪婪模式 **
 -----
 
-*   贪婪模式： 尽可能多
+*   贪婪模式： 尽可能多 {:&.moveIn}
 * 非贪婪模式：尽可能少
-    * 问号(?)符紧跟在任何一个其他限制符（*,+,?，{n}，{n,}，{n,m}）后面时，匹配模式是非贪婪的
+    * 问号(?)符紧跟在任何一个其他限制符（*,+,?，{n}，{n,}，{n,m}）后面时，匹配模式是非贪婪的 {:&.moveIn}
     * 例如，对于字符串“oooo”，“o+?”将匹配单个“o”，而“o+”将匹配所有“o”
 [slide]
-# $n 与括号
+# $n与括号
 ## 第n个匹配项
 ----
 
-* $n表示第n个括号匹配的项
+* $n表示第n个括号匹配的项 {:&.moveIn}
 * 实际测试中$0是表示整个字符串
 * (?:pattern)是一个非获取匹配
-    * 对于字符串`<li id="menu-distribution-order">`  
+    * 对于字符串`<li id="menu-distribution-order">`   {:&.moveIn}
     * 正则表达式`<li id="(.*?)"`中$1是`menu-distribution-order`
     * 正则表达式`<li id="(?:.*?)"`中$1是空串
 
@@ -360,7 +389,7 @@ I get 10 times more traffic from [Google][1] than from
 
 
 [slide]
-#什么问题
+# 问题
 ----
 ```
 <!--<li id="menu-distribution-order"><a class="menu-link" href="//xxxx"><span
@@ -387,12 +416,14 @@ I get 10 times more traffic from [Google][1] than from
     </div>
 </form>
 ```
+
 转化成JS中的字符串拼接，类似于
 ```
 '<form id="home-search-form" action="/zh-CN/search" method="get">' + 
 '<div class="home-search-form search-form">' +
 ....
-````
+```
+
 
 [slide]
 # 解决思路
@@ -414,9 +445,9 @@ I get 10 times more traffic from [Google][1] than from
 # 正则-其他
 ## 简单聊聊身份证的验证
 ----
-* 15位身份证的年用2位，没有校验位
-* 18位身份证最后一位是校验位
-    * 1-2 省级行政区代码
+* 15位身份证的年用2位，没有校验位 {:&.moveIn}
+* 18位身份证最后一位是校验位 
+    * 1-2 省级行政区代码 {:&.moveIn}
     * 3-4 地级行政区划分代码
     * 5-6 县区行政区分代码
     * 7-10 11-12 13-14 出生年、月、日
