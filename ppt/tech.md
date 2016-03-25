@@ -70,7 +70,7 @@ A Second Level Header
 # A 1st Level Header
 ## A 2nd Level Header
 
-[slide]
+[slide data-transition="cards"]
 # 基本语法(续)
 ----
 * 强调
@@ -83,7 +83,7 @@ A Second Level Header
     * Some of these words _are emphasized_ 
     * Use two asterisks for __strong emphasis__
 
-[slide]
+[slide data-transition="newspaper"]
 # 基本语法(续)
 ----
 * 列表
@@ -103,7 +103,7 @@ A Second Level Header
 
 [/note]
 
-[slide]
+[slide data-transition="vertical3d"]
 # 基本语法(续)
 ----
 * 链接 {:&.moveIn}
@@ -112,7 +112,7 @@ A Second Level Header
     * 参考链接
         * 链接定一个名称，之后你可以在文件的其他地方定义该链接的内容  
 
-[slide]
+[slide data-transition="zoomin"]
 # **链接**实例
 ----
 <pre class="pre">
@@ -139,7 +139,7 @@ I get 10 times more traffic from [Google][1] than from
 下一页先讲换行
 [/note]
 
-[slide]
+[slide data-transition="cards"]
 #  基本语法(续)
 ----
 * 换行 {:&.moveIn}
@@ -150,7 +150,7 @@ I get 10 times more traffic from [Google][1] than from
     * 参考形式
 
     
-[slide]
+[slide ]
 #  基本语法(续)
 ----
 * 代码 {:&.moveIn}
@@ -163,7 +163,7 @@ I get 10 times more traffic from [Google][1] than from
 [note]
 `区段内的 &、< 和 > 都会被自动的转换成 HTML 实体，这项特性让你可以很容易的在代码区段内插入 HTML 码`
 [/note]
-[slide]
+[slide data-transition="newspaper"]
 # 总结
 ---
 类型 | 表述方式 | HTML
@@ -177,7 +177,7 @@ I get 10 times more traffic from [Google][1] than from
 代码|\`/制表符|`<code>`
 引用|\>|`<blockquote><p>`
 
-[slide]
+[slide data-transition="stick"]
 一个典型例子
 -------
 ```
@@ -199,7 +199,7 @@ React Native enables you to build world-class ...
 * 表格的使用
 [/note]
 
-[slide]
+[slide  data-transition="slide3"]
 实际效果
 ----
 # React Native 
@@ -214,7 +214,7 @@ React Native enables you to build world-class ...
 - There are **Guides** that discuss topics like [debugging](https://facebook.github.io/react-native/docs/debugging.html), [integrating with existing apps](https://facebook.github.io/react-native/docs/embedded-app-ios.html), and [the gesture responder system](https://facebook.github.io/react-native/docs/gesture-responder-system.html).
 - Finally, React Native provides a small number of **Polyfills** that offer web-like APIs.
 
-[slide]
+[slide data-transition="zoomout"]
 # 参考链接
 ----
 
@@ -229,7 +229,7 @@ React Native enables you to build world-class ...
 [麻花在线markdown编辑器](http://mahua.jser.me/)
 
 
-[slide]
+[slide  data-transition="horizontal"]
 # 正则实例
 ----
 
@@ -240,7 +240,8 @@ React Native enables you to build world-class ...
 [note]
 测试均在web-storm上进行
 [/note]
-[slide]
+
+[slide data-transition="slide3"]
 # 版本号替换(1)
 ## 将所有引入css的地方加入一个版本号：?v=2
 ----
@@ -256,7 +257,8 @@ React Native enables you to build world-class ...
 
 两个正则表达式的区别？
 [/note]
-[slide]
+
+[slide data-transition="kontext"]
 #解决思路
 ----
 * 其中的一个思路：
@@ -267,7 +269,7 @@ React Native enables you to build world-class ...
 
 出问题了 {:&.fadeIn}
 
-[slide]
+[slide data-transition="glue"]
 # 问题
 ----
 
@@ -294,9 +296,10 @@ React Native enables you to build world-class ...
 * a.css?=1
 * a.css?1
 * a.css?v=1 (后面跟空格)
+* a.css?v=1.1
 [/note]
 
-[slide]
+[slide  data-transition="earthquake"]
 # 版本号替换(2)
 ## 加入所有引入的js文件的版本号
 -----
@@ -305,7 +308,7 @@ React Native enables you to build world-class ...
 <script src="demo/js/demo.js?v=1"></script>
 <script src='demo/js/demo.js'></script>
 ```
-[slide]
+[slide data-transition="pulse"]
 #解决思路
 ----
 * 其中的一个思路：
@@ -319,7 +322,7 @@ React Native enables you to build world-class ...
 我们仍然不考虑单引号的问题
 [/note]
 
-[slide]
+[slide data-transition="stick"]
 # 问题
 ----
 ```
@@ -334,7 +337,7 @@ React Native enables you to build world-class ...
 </script>
 ```
 
-[slide]
+[slide data-transition="cards"]
 # 文本替换
 ----
 将代码
@@ -359,7 +362,7 @@ React Native enables you to build world-class ...
 
 出问题了 {:&.fadeIn}
 
-[slide]
+[slide data-transition="slide2"]
 # ** 贪婪模式 ** 和 ** 非贪婪模式 **
 -----
 
@@ -377,7 +380,7 @@ React Native enables you to build world-class ...
 * `\.css[^"]*"`
 * `\.css.*"`
 [/note]
-[slide]
+[slide data-transition="circle"]
 # $n与括号
 ## 第n个匹配项
 ----
@@ -411,7 +414,7 @@ React Native enables you to build world-class ...
 [note]
 思考一下如果用的是`<li id="(.*)"`会出现什么？
 [/note]
-[slide]
+[slide data-transition="pulse"]
 # 问题
 ----
 ```
@@ -427,7 +430,7 @@ React Native enables you to build world-class ...
 解决方案请自行考虑
 
 
-[slide]
+[slide data-transition="move"]
 # 字符串拼接
 ## html转化成JS中拼接的字符串
 ----
@@ -470,7 +473,7 @@ React Native enables you to build world-class ...
 出问题了 {:&.fadeIn}
 
 [note]注意加号前面有\\，即`'(.*)'\+`[/note]
-[slide]
+[slide data-transition="horizontal3d"]
 # 正则-其他
 ## 简单聊聊身份证的验证
 ----
